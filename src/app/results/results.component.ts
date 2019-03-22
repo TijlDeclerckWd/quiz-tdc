@@ -22,7 +22,7 @@ export class ResultsComponent implements OnInit {
     this.resultService.results
       .subscribe((results) => {
       this.results = results;
-      if (this.results.length === 0) {
+      if (this.results.length < 5) {
         this.router.navigateByUrl('/');
       }
     });

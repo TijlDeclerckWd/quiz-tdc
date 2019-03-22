@@ -33,14 +33,15 @@ export class QuestionComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.ngxService.start();
       const number = parseInt(params.number, 10);
+
+      if (number < this.questionNumber) {
+        this.removeGivenAnswers(number);
+      }
+
       this.questionNumber = number;
       this.question = this.questions[number - 1];
       this.loadImage();
     });
-  }
-
-  defineBackground() {
-    return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),url(${this.question.background})`);
   }
 
   evaluateAnswer(answer) {
@@ -67,5 +68,10 @@ export class QuestionComponent implements OnInit {
         $('.question-section').css('background-image', `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),url(${this.question.background})`);
         this.ngxService.stop();
       });
+    }
+
+    removeGivenAnswers(number) {
+    const difference = this.questionNumber - number;
+    this.score.splice(this.questionNumber - 1 - number, difference);
     }
 }
