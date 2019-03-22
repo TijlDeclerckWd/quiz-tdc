@@ -19,7 +19,6 @@ export class ResultsComponent implements OnInit {
     private ngxService: NgxUiLoaderService) {}
 
   ngOnInit() {
-
     this.resultService.results
       .subscribe((results) => {
       this.results = results;
@@ -27,7 +26,6 @@ export class ResultsComponent implements OnInit {
         this.router.navigateByUrl('/');
       }
     });
-
     this.loadImage();
   }
 
