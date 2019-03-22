@@ -9,6 +9,16 @@ import {MatButtonModule, MatListModule} from '@angular/material';
 import { QuestionComponent } from './question/question.component';
 import { ResultsComponent } from './results/results.component';
 import {ResultService} from './services/result.service';
+import {NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER} from 'ngx-ui-loader';
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  bgsOpacity: 1,
+  pbThickness: 10, // progress bar thickness
+  fgsSize: 120,
+  bgsType: SPINNER.rotatingPlane,
+  fgsType: SPINNER.chasingDots,
+  overlayColor: 'rgba(40, 40, 40, .9)'
+};
 
 @NgModule({
   declarations: [
@@ -21,6 +31,7 @@ import {ResultService} from './services/result.service';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     MatButtonModule,
     MatListModule
   ],

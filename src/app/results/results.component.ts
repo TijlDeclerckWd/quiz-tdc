@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ResultService} from '../services/result.service';
 import {Router} from '@angular/router';
-import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
+import {NgxUiLoaderService} from 'ngx-ui-loader';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-results',
@@ -12,9 +13,13 @@ export class ResultsComponent implements OnInit {
 
   results = [];
 
-  constructor(private resultService: ResultService, private router: Router) {}
+  constructor(
+    private resultService: ResultService,
+    private router: Router,
+    private ngxService: NgxUiLoaderService) {}
 
   ngOnInit() {
+
     this.resultService.results
       .subscribe((results) => {
       this.results = results;
@@ -22,6 +27,8 @@ export class ResultsComponent implements OnInit {
         this.router.navigateByUrl('/');
       }
     });
+
+    this.loadImage();
   }
 
   defineResult() {
@@ -38,5 +45,15 @@ export class ResultsComponent implements OnInit {
 
   evaluateAnswer(answer) {
  return answer.correct ? `/assets/images/succes.png` : `/assets/images/fail.png`;
+  }
+
+  loadImage() {
+    this.ngxService.start();
+    const $img = $('<img/>');
+    $img.attr('src', "/assets/images/success.jpg").on('load', () => {
+      $img.remove();
+      $('.results-section').css('background-image', 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("/assets/images/success.jpg")');
+      this.ngxService.stop();
+    });
   }
 }

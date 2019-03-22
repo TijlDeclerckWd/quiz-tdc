@@ -1,6 +1,6 @@
 
-  <section [style.backgroundImage]="defineBackground()" class="question-section">
-    <div *ngIf="question" class="question-container">
+  <section *ngIf="question" class="question-section">
+    <div class="question-container">
       <h2 class="question">{{question.question}}</h2>
       <div class="answers">
         <div (click)="evaluateAnswer(answer)" *ngFor="let answer of question.answers" class="answer answer--{{i}}">{{answer}}</div>

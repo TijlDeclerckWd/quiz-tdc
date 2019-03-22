@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {questions} from '../../assets/data/questions';
 import {ResultService} from '../services/result.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {NgxUiLoaderService} from 'ngx-ui-loader';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'question',
@@ -23,15 +25,17 @@ export class QuestionComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private resultService: ResultService,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    private ngxService: NgxUiLoaderService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe( params => {
-      console.log('this.score', this.score);
-      let number = parseInt(params.number, 10);
+      this.ngxService.start();
+      const number = parseInt(params.number, 10);
       this.questionNumber = number;
       this.question = this.questions[number - 1];
+      this.loadImage();
     });
   }
 
@@ -56,4 +60,12 @@ export class QuestionComponent implements OnInit {
     }
   }
 
+  loadImage() {
+    const $img = $('<img/>');
+      $img.attr('src', this.question.background).on('load', () => {
+        $img.remove();
+        $('.question-section').css('background-image', `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),url(${this.question.background})`);
+        this.ngxService.stop();
+      });
+    }
 }

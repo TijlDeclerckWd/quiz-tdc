@@ -11,6 +11,10 @@
       flex-direction: column;
       width: 65%;
 
+      .image_error {
+        display: none;
+      }
+
       .question {
         color: #fff;
         margin-right: auto;
