@@ -1,0 +1,65 @@
+@import "../scss/mixins";
+
+
+  .question-section {
+    height: 100vh;
+    background-size: cover;
+    background-position: center bottom;
+    @include flex-center;
+    .question-container {
+      @include flex-center;
+      flex-direction: column;
+      width: 65%;
+
+      .question {
+        color: #fff;
+        margin-right: auto;
+        font-size: 5rem;
+        margin-bottom: 3rem;
+        font-weight: 600;
+
+        @include respond(phone) {
+          font-size: 3rem;
+        }
+      }
+
+      .answers {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        grid-gap: 2rem;
+        padding: 1rem;
+        justify-items: center;
+
+        @include respond(phone) {
+          grid-template-columns: 1fr;
+        }
+
+        .answer {
+          padding: 6rem 4rem;
+          background-color: #eee;
+          border: 1px solid #aaa;
+          width: 80%;
+          border-radius: 1rem;
+          text-align: center;
+          font-size: 3rem;
+          cursor: pointer;
+          opacity: .7;
+          transition: .3s all;
+
+@include respond(phone) {
+  padding: 3rem 4rem;
+  width: 100%;
+}
+
+          &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 1rem 2rem rgba(#000, .3);
+            background-color: #ccc;
+          }
+        }
+      }
+    }
+  }
+
+

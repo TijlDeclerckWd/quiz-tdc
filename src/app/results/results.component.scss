@@ -1,0 +1,63 @@
+@import "../scss/mixins";
+
+.results-section {
+  height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0, .5), rgba(0,0,0,.5)), url("/assets/images/success.jpg");
+  background-size: cover;
+  @include flex-center;
+  .results-container {
+    @include flex-center;
+    flex-direction: column;
+    width: 50%;
+
+    .title {
+      color: #fff;
+      font-size: 4rem;
+      margin-bottom: 3rem;
+      text-align: center;
+
+      @include respond(phone) {
+        font-size: 2.5rem;
+      }
+    }
+
+    .listItem {
+      background-color: #eee;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      opacity: .8;
+      transition: .2s all;
+      width: 50vw;
+
+      @include respond(phone) {
+        width: 70vw;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .question {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+
+// animation
+
+.slideIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

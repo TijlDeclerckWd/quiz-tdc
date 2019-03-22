@@ -1,0 +1,12 @@
+<section class="results-section">
+  <div class="results-container">
+    <h2 class="title">{{defineResult()}}</h2>
+    <mat-list>
+      <mat-list-item class="listItem fadeIn" *ngFor="let result of results; let i = index">
+        <img matListAvatar [src]="evaluateAnswer(result)" alt="result-img">
+        <h3 class="question" matLine> {{result.question.question}} </h3>
+        <p matLine><strong>{{result.question.correctAnswer}}</strong></p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</section>
